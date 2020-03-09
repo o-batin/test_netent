@@ -1,16 +1,16 @@
-import { Application, Container, Graphics, Text } from 'pixi.js'
+import * as PIXI from 'pixi.js';
 
 export class App {
     constructor() {}
 
     init() {
-        const app = new Application({
+        const app = new PIXI.Application({
             backgroundColor: 0x1099bb
         });
         document.body.appendChild(app.view);
 
-        const loadingContainer = new Container();
-        const bg = new Graphics();
+        const loadingContainer = new PIXI.Container();
+        const bg = new PIXI.Graphics();
         bg.beginFill(0x000000);
         bg.drawRect(0, 0, app.view.width, app.view.height);
         loadingContainer.addChild(bg);
@@ -21,7 +21,7 @@ export class App {
             'LOADING...',
         ];
         let index = 0;
-        let text = new Text(textLoading[index], {
+        let text = new PIXI.Text(textLoading[index], {
             fontSize: 50,
             fontWeight: 'bold',
             fill: 0xFFFFFF
