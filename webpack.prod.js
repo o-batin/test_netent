@@ -1,21 +1,19 @@
 const path = require("path");
 const common = require("./webpack.common");
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(common, {
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: "production",
+    devtool: "source-map",
     output: {
-        filename: "[name].bundle.js",
+        filename: "[name].[contentHash].bundle.js",
         path: path.resolve(__dirname, "dist")
     },
-    devServer: {
-        contentBase: path.resolve(__dirname, "dist"),
-        port: 3000
-    },
     plugins: [
+        new CleanWebpackPlugin(),
         new CopyWebpackPlugin([
             {
                 from: "src/assets/", to: "assets/"
@@ -24,7 +22,8 @@ module.exports = merge(common, {
             copyUnmodified: true
         }),
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: "./src/index.html",
+            minify: true
         })
     ]
 });
