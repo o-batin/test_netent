@@ -6,5 +6,5 @@
 
 1. Run `npm install`.
 2. Run `npm start` and go to `http://localhost:3000`
-3. Run `npm run build` to build production ready build.
+3. Run `npm run build` to build production ready app.
 
